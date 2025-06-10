@@ -8,11 +8,21 @@ const replies = [
 ];
 
 const addMessage = (text, sender) => {
-  const message = document.createElement('div');
-  message.className = `message ${sender}`;
-  message.textContent = `${sender === 'user' ? 'You' : 'Genie'}: ${text}`;
-  chat.appendChild(message);
-  chat.scrollTop = chat.scrollHeight;
+    const message = document.createElement('div');
+    message.className = `message ${sender}`;
+  
+    const label = document.createElement('span');
+    label.className = 'label';
+    label.textContent = sender === 'user' ? 'You:' : 'Genie:';
+  
+    const content = document.createElement('span');
+    content.className = 'text';
+    content.textContent = ' ' + text;
+  
+    message.appendChild(label);
+    message.appendChild(content);
+    chat.appendChild(message);
+    chat.scrollTop = chat.scrollHeight;
 };
 
 form.addEventListener('submit', (e) => {
