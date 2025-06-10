@@ -3,119 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GloboCorp GPT Genie (Prototype)</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f5f5f5;
-    }
-    h1 {
-      color: crimson;
-    }
-    #chat {
-      border: 1px solid #ccc;
-      height: 300px;
-      overflow-y: auto;
-      padding: 10px;
-      background: #fff;
-    }
-    .message {
-      margin: 8px 0;
-      padding: 6px 10px;
-      border-radius: 8px;
-      max-width: 70%;
-    }
-    .user {
-      background-color: #cce5ff;
-      align-self: flex-end;
-      text-align: right;
-      margin-left: auto;
-    }
-    .bot {
-      background-color: #eee;
-      align-self: flex-start;
-      text-align: left;
-      margin-right: auto;
-    }
-    #input-area {
-      margin-top: 10px;
-      display: flex;
-      gap: 8px;
-    }
-    #input {
-      flex-grow: 1;
-      padding: 8px;
-      font-size: 14px;
-    }
-    #send {
-      padding: 8px 16px;
-    }
-    #container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-width: 600px;
-    }
-    .disclaimer {
-      font-size: 0.9em;
-      color: #666;
-    }
-  </style>
+  <title>Globocorp GPT Genie</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="container">
-    <h1>GloboCorp's GPT Genie</h1>
-    <p><strong>Prototype Only:</strong> This is a mock AI assistant for demonstration purposes.</p>
-    <p class="disclaimer">Tell us your wishes and the GPT Genie will respond!</p>
+  <header>
+    <h1>Globocorp GPT Genie</h1>
+    <p>Tell us your wishes and all of your dreams will come true!</p>
+  </header>
 
-    <div id="chat"></div>
+  <main>
+    <section id="chat" aria-label="Chat log"></section>
+    <form id="genie-form">
+      <input type="text" id="input" placeholder="What are your wishes, mighty customer?" required />
+      <button type="submit">Send</button>
+    </form>
+  </main>
 
-    <div id="input-area">
-      <input type="text" id="input" placeholder="Type your wish or thought..." />
-      <button id="send">Send</button>
-    </div>
-  </div>
+  <noscript>
+    <p class="no-js-warning">This application requires JavaScript to function properly. Please enable JavaScript.</p>
+  </noscript>
 
-  <script>
-    const chat = document.getElementById("chat");
-    const input = document.getElementById("input");
-    const sendBtn = document.getElementById("send");
-
-    const fakeReplies = [
-      "I'm listening. Tell me more.",
-      "That’s an interesting thought.",
-      "Your wish has been noted",
-      "Let’s explore that idea further!",
-      "That sounds important. Want to dive deeper?",
-      "You're being heard. Loud and clear."
-    ];
-
-    function addMessage(text, sender) {
-      const msg = document.createElement("div");
-      msg.classList.add("message", sender);
-      msg.innerText = `${sender === "user" ? "You" : "Genie"}: ${text}`;
-      chat.appendChild(msg);
-      chat.scrollTop = chat.scrollHeight;
-    }
-
-    function sendMessage() {
-      const userInput = input.value.trim();
-      if (userInput === "") return;
-
-      addMessage(userInput, "user");
-      input.value = "";
-
-      setTimeout(() => {
-        const reply = fakeReplies[Math.floor(Math.random() * fakeReplies.length)];
-        addMessage(reply, "bot");
-      }, 700);
-    }
-
-    sendBtn.addEventListener("click", sendMessage);
-    input.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") sendMessage();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
